@@ -47,4 +47,10 @@ public class PersonajeController {
     public void addSerie(@PathVariable long id, @RequestBody @Valid Series series) {
         personajeService.addList(id, series);
     }
+    @GetMapping("theBest") @CrossOrigin()
+    @ResponseStatus(HttpStatus.OK)
+    public List<Personaje> theBest() {return personajeService.topOne();}
+    @GetMapping("theBest5") @CrossOrigin()
+    @ResponseStatus(HttpStatus.OK)
+    public List<Personaje> theBest5() {return personajeService.topFive();}
 }

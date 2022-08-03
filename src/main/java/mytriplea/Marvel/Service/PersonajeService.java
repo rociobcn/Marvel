@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -44,18 +45,40 @@ public class PersonajeService {
         personajeRepository.save(personajeRepository.findById(id).get());
     }
 
-    public List <Personaje> topFive(){
+    public List <Personaje> topOne(){
         List <Personaje> listPersonajes = personajeRepository.findAll();
         //listPersonajes.sort((a, b) -> a.getSeriesList().size().compareTo(b.getSeriesList().size()));
         //listPersonajes.sort(Comparator.comparingInt(List::size).reversed().limit(5));
+        //List <List<Series>> theBests = new ArrayList<>();
         List <Personaje> theBests = new ArrayList<>();
         for (Personaje personaje: listPersonajes) {
+            if(!theBests.isEmpty()){
+                if(personaje.getSeriesList().size() > theBests.get(0).getSeriesList().size()){
+                    theBests.remove(theBests.get(0));
+                    theBests.add(personaje);
 
-            if(theBests.isEmpty()){
-                theBests.add(personaje);
-            } else if(theBests.size() <=5 && personaje.getSeriesList().size() > theBests.get(0).getSeriesList().size()){
+                }
+            } else {
                 theBests.add(personaje);
             }
+
+        }
+        return theBests;
+    }
+    public List <Personaje> topFive(){
+        List <Personaje> listPersonajes = personajeRepository.findAll();
+        List <Personaje> theBests = new ArrayList<>();
+        List <Integer> size = new ArrayList<>();
+        for (Personaje personaje: listPersonajes) {
+           size.add(personaje.sizeList(personaje.getSeriesList()));
+           Collections.sort(size, Collections.reverseOrder());
+           if(personaje.getSeriesList().size() == size.get(0) || personaje.getSeriesList().size() == size.get(1)
+           || personaje.getSeriesList().size() == size.get(2) || personaje.getSeriesList().size() == size.get(3)
+           || personaje.getSeriesList().size() == size.get(4)) {
+               theBests.add(personaje);
+           };
+
+
         }
         return theBests;
     }

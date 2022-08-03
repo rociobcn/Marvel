@@ -46,7 +46,52 @@ public class MarvelApplication implements CommandLineRunner {
 		personaje2.addSeries(series2);
 		personajeRepository.save(personaje2);
 
+		Personaje personaje3 = personajeRepository.save(new Personaje(1011300, "Antonia", "","http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784", "jpg"));
+		Personaje personaje4 = personajeRepository.save(new Personaje(1011301, "Filomena", "","http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784", "jpg"));
+		Personaje personaje5 = personajeRepository.save(new Personaje(1011302, "Rocio", "","http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784", "jpg"));
+		Personaje personaje6 = personajeRepository.save(new Personaje(1011303, "Ricardo", "","http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784", "jpg"));
+		Personaje personaje7 = personajeRepository.save(new Personaje(1011304, "Sebastian", "","http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784", "jpg"));
+		Personaje personaje8 = personajeRepository.save(new Personaje(1011305, "Pepe", "","http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784", "jpg"));
 
+		Series series6 = seriesRepository.save(new Series(17766, "la aventura de kain", null, 2013, "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available", "jpg"));
+		Series series7 = seriesRepository.save(new Series(17767, "comic", null, 2013, "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available", "jpg"));
+		Series series8 = seriesRepository.save(new Series(17761, "comic segunda parte", null, 2013, "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available", "jpg"));
+		Series series9 = seriesRepository.save(new Series(17769, "la saga", null, 2013, "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available", "jpg"));
+		Series series10 = seriesRepository.save(new Series(17763, "la saga conitnua", null, 2013, "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available", "jpg"));
+		Series series11 = seriesRepository.save(new Series(17768, "vamos alli", null, 2013, "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available", "jpg"));
+
+		personaje3.addSeries(series6);
+		personaje3.addSeries(series2);
+		personaje3.addSeries(series1);
+		personaje3.addSeries(series4);
+		personajeRepository.save(personaje3);
+		personaje4.addSeries(series7);
+		personaje4.addSeries(series8);
+		personaje4.addSeries(series9);
+		personaje4.addSeries(series10);
+		personajeRepository.save(personaje4);
+		personaje5.addSeries(series11);
+		personaje5.addSeries(series10);
+		personaje5.addSeries(series9);
+		personaje5.addSeries(series8);
+		personaje5.addSeries(series7);
+		personajeRepository.save(personaje5);
+		personaje6.addSeries(series11);
+		personajeRepository.save(personaje6);
+		personaje7.addSeries(series11);
+		personaje7.addSeries(series10);
+		personaje7.addSeries(series9);
+		personaje7.addSeries(series8);
+		personaje7.addSeries(series7);
+		personajeRepository.save(personaje7);
+		personaje8.addSeries(series11);
+		personaje8.addSeries(series10);
+		personaje8.addSeries(series9);
+		personaje8.addSeries(series8);
+		personaje8.addSeries(series7);
+		personaje8.addSeries(series2);
+		personaje8.addSeries(series1);
+		personajeRepository.save(personaje8);
 
 	}
 }

@@ -95,4 +95,9 @@ public class Personaje {
         this.seriesList.add(series);
         series.getPersonajesList().add(this);
     }
+    public int sizeList(List <Series> lista){
+        int size = lista.size();
+        return size;
+    }
+
 }
