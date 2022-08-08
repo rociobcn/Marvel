@@ -1,6 +1,7 @@
 package mytriplea.Marvel.Controller;
 
 import mytriplea.Marvel.Dto.PersonajeDTO;
+import mytriplea.Marvel.Dto.SeriesDTO;
 import mytriplea.Marvel.Model.Personaje;
 import mytriplea.Marvel.Model.Series;
 import mytriplea.Marvel.Service.PersonajeService;
@@ -44,8 +45,9 @@ public class PersonajeController {
 
     @PostMapping("addSerie/{id}") @CrossOrigin()
     @ResponseStatus(HttpStatus.CREATED)
-    public void addSerie(@PathVariable long id, @RequestBody @Valid Series series) {
-        personajeService.addList(id, series);
+    public void addSerie(@PathVariable long id, @RequestBody @Valid SeriesDTO series) {
+        personajeService.addSerie(id, series);
+        System.out.println("estoy en la llamada---"  + series.getStartYearPublication());
     }
     @GetMapping("theBest") @CrossOrigin()
     @ResponseStatus(HttpStatus.OK)
@@ -53,4 +55,8 @@ public class PersonajeController {
     @GetMapping("theBest5") @CrossOrigin()
     @ResponseStatus(HttpStatus.OK)
     public List<Personaje> theBest5() {return personajeService.topFive();}
+
+    @GetMapping("allSeries/{id}") @CrossOrigin()
+    @ResponseStatus(HttpStatus.OK)
+    public List<Series> seriesList(@PathVariable long id) {return personajeService.seriesListPersonajes(id);}
 }

@@ -37,11 +37,13 @@ public class PersonajeService {
         return personajeRepository.save(new Personaje(personajeDTO.getId(), personajeDTO.getName(), personajeDTO.getDescription(),
                 personajeDTO.getThumbnailPath(), personajeDTO.getThumbnailExtension()));
     }
-    public void addList(long id, Series series){
+    public void addSerie(long id, SeriesDTO series){
+
         if (!personajeRepository.findById(id).isPresent()) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Este personaje no existe en nuestra base de datos.");
         }
-        personajeRepository.findById(id).get().addSeries(series);
+        Series serie1 = new Series(series.getId(), series.getTitle(), series.getDescription(), series.getStartYearPublication(), series.getThumbnailPath(), series.getThumbnailExtension());
+        personajeRepository.findById(id).get().addSeries(serie1);
         personajeRepository.save(personajeRepository.findById(id).get());
     }
 
@@ -71,17 +73,26 @@ public class PersonajeService {
         List <Integer> size = new ArrayList<>();
         for (Personaje personaje: listPersonajes) {
            size.add(personaje.sizeList(personaje.getSeriesList()));
+            System.out.println(size);
            Collections.sort(size, Collections.reverseOrder());
            if(personaje.getSeriesList().size() == size.get(0) || personaje.getSeriesList().size() == size.get(1)
            || personaje.getSeriesList().size() == size.get(2) || personaje.getSeriesList().size() == size.get(3)
            || personaje.getSeriesList().size() == size.get(4)) {
                theBests.add(personaje);
+              // System.out.println(theBests.get(4).getSeriesList().size());
            };
 
 
         }
         return theBests;
     }
+    public List<Series> seriesListPersonajes(long id){
+        if (!personajeRepository.findById(id).isPresent()) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Este personaje no existe en nuestra base de datos.");
+        }
+        return personajeRepository.findById(id).get().getSeriesList();
+    }
+
 
 
 

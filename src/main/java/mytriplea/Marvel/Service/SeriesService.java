@@ -29,6 +29,7 @@ public class SeriesService {
         return seriesRepository.findById(id).get();
     }
     public Series addSeries(SeriesDTO seriesDTO){
+        System.out.println(seriesDTO.getTitle());
         if (seriesRepository.findById(seriesDTO.getId()).isPresent()) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Esta serie ya está almacenada en nuestra base de datos.");
         }
@@ -42,4 +43,13 @@ public class SeriesService {
         }
         return seriesRepository.findById(id).get().getPersonajesList();
     }
+    public void deleteSeriesVacias() {
+        List<Series> seriesList = seriesRepository.findAll();
+        for (Series serie : seriesList) {
+            if (serie.getPersonajesList().isEmpty()) {
+                seriesRepository.delete(serie);
+            }
+        }
+    }
+
 }

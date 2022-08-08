@@ -11,6 +11,7 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 public class SeriesDTO {
     private long id;
+    @Column(length = 2000)
     private String title;
     @Column(length = 2000)
     private String description;

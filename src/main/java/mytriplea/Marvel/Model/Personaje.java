@@ -1,5 +1,6 @@
 package mytriplea.Marvel.Model;
 
+import mytriplea.Marvel.Dto.SeriesDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -14,17 +15,14 @@ import java.util.List;
 public class Personaje {
     @Id
     private long id;
-    @NotNull
-    @NotEmpty
+
     private String name;
-    @NotNull
+
     @Column(length = 2000)
     private String description;
-    @NotNull
-    @NotEmpty
+
     private String thumbnailPath;
-    @NotNull
-    @NotEmpty
+
     private String thumbnailExtension;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE} )
@@ -92,6 +90,7 @@ public class Personaje {
     }
 
     public void addSeries(Series series) {
+        System.err.println(series.getStartYearPublication());
         this.seriesList.add(series);
         series.getPersonajesList().add(this);
     }

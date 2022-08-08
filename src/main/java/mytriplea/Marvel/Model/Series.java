@@ -15,19 +15,16 @@ public class Series {
 
         @Id
         private long id;
-        @NotNull
-        @NotEmpty
+        @Column(length = 2000)
         private String title;
         @Column(length = 2000)
         private String description;
-        @NotNull
+
         private int startYearPublication;
 
-        @NotNull
-        @NotEmpty
+
         private String thumbnailPath;
-        @NotNull
-        @NotEmpty
+
         private String thumbnailExtension;
 
         @ManyToMany(mappedBy = "seriesList")

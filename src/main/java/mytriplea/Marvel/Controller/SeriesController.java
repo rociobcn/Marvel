@@ -49,4 +49,10 @@ public class SeriesController {
     public List<Personaje> getAllSeries(@PathVariable long id) {
         return seriesService.getListPersonajes(id);
     }
+
+    @DeleteMapping("deleteVacias") @CrossOrigin()
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteSeriesVacias() {
+        seriesService.deleteSeriesVacias();
+    }
 }
